@@ -175,6 +175,29 @@ const Homepage = () => {
         setScrolled(true);
       } else if (
         scrolled &&
+        e.deltaY > 0 &&
+        window.scrollY >= window.innerHeight * 0.5 &&
+        window.scrollY < window.innerHeight * 1.5
+      ) {
+        // From projects/events section to values section
+        e.preventDefault();
+        window.scrollTo({
+          top: window.innerHeight * 2,
+          behavior: "smooth",
+        });
+      } else if (
+        scrolled &&
+        e.deltaY < 0 &&
+        window.scrollY >= window.innerHeight * 1.5
+      ) {
+        // From values section back to projects/events section
+        e.preventDefault();
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: "smooth",
+        });
+      } else if (
+        scrolled &&
         e.deltaY < 0 &&
         window.scrollY < window.innerHeight * 0.5
       ) {
@@ -212,10 +235,33 @@ const Homepage = () => {
         setScrolled(true);
       } else if (
         scrolled &&
+        deltaY > 0 &&
+        window.scrollY >= window.innerHeight * 0.5 &&
+        window.scrollY < window.innerHeight * 1.5
+      ) {
+        // Touch swipe down from projects/events to values section
+        e.preventDefault();
+        window.scrollTo({
+          top: window.innerHeight * 2,
+          behavior: "smooth",
+        });
+      } else if (
+        scrolled &&
+        deltaY < 0 &&
+        window.scrollY >= window.innerHeight * 1.5
+      ) {
+        // Touch swipe up from values to projects/events section
+        e.preventDefault();
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: "smooth",
+        });
+      } else if (
+        scrolled &&
         deltaY < 0 &&
         window.scrollY < window.innerHeight * 0.5
       ) {
-        // Scrolling up
+        // Scrolling up to hero section
         e.preventDefault();
         window.scrollTo({
           top: 0,
