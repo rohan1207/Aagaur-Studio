@@ -8,12 +8,12 @@ const Navbar = () => {
   // Prevent scrolling when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
 
@@ -119,8 +119,10 @@ const Navbar = () => {
         {/* Mobile Menu - Full Screen */}
         <div
           className={`md:hidden fixed inset-0 bg-white z-40 transition-all duration-700 ease-out 
-            ${isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
-          style={{ top: '96px' }} // Height of the navbar
+            ${
+              isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+            }`}
+          style={{ top: "96px" }} // Height of the navbar
         >
           <div className="h-full flex flex-col justify-between py-8 px-6">
             {/* Navigation Links */}
@@ -139,7 +141,9 @@ const Navbar = () => {
 
             {/* Social Links */}
             <div className="border-t border-black/10 pt-8">
-              <p className="text-[14px] tracking-[0.1em] text-black/60 mb-6">Follow Us</p>
+              <p className="text-[14px] tracking-[0.1em] text-black/60 mb-6">
+                Follow Us
+              </p>
               <div className="flex items-center space-x-8">
                 {socialLinks.map((social) => (
                   <a

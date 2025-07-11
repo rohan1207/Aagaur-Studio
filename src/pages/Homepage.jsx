@@ -6,19 +6,37 @@ const projectsData = [
     name: "Modern Serenity Villa",
     description:
       "Luxury residential project embracing minimalist design philosophy",
-    image: "/project1.avif",
+    image: "/proj3.jpg",
   },
   {
     id: 2,
     name: "Harmony Heights",
     description: "Contemporary urban living with sustainable architecture",
-    image: "/project2.avif",
+    image: "/proj2.jpg",
   },
   {
     id: 3,
     name: "Ethereal Spaces",
     description: "Blend of artistry and functionality in commercial design",
-    image: "/project3.avif",
+    image: "/proj1.jpg",
+  },
+  {
+    id: 4,
+    name: "Urban Oasis",
+    description: "Innovative mixed-use development in the heart of the city",
+    image: "/proj4.jpg",
+  },
+  {
+    id: 5,
+    name: "Sustainable Retreat",
+    description: "Eco-friendly resort design in harmony with nature",
+    image: "/proj5.jpg",
+  },
+  {
+    id: 6,
+    name: "Cultural Heritage Center",
+    description: "Preserving history through modern architectural techniques",
+    image: "/proj6.jpg",
   },
 ];
 
@@ -27,20 +45,36 @@ const eventsData = [
     id: 1,
     name: "Design Excellence Awards",
     description: "Recognition for outstanding architectural innovation",
-    image: "/project2.avif",
+    image: "/event1.png",
   },
+ 
+ 
   {
     id: 2,
-    name: "Sustainable Future Summit",
-    description: "Leading the way in eco-conscious design",
-    image: "/project3.avif",
+    name: "Design Thinking Workshop",
+    description: "Exploring innovative design methodologies",
+    image: "/event4.avif",
   },
+  
   {
     id: 3,
     name: "Architecture Masterclass",
     description: "Sharing expertise in modern architectural solutions",
-    image: "/project1.avif",
+    image: "/event6.png",
   },
+  { id: 4,
+    name: "Design Thinking Workshop",
+    description: "Exploring innovative design methodologies",
+    image: "/event7.png",
+  },
+  {
+    id: 5,
+    name: "Sustainable Future Summit",
+    description: "Leading the way in eco-conscious design",
+    image: "/event8.avif",
+  },
+  
+
 ];
 
 const Homepage = () => {
@@ -222,7 +256,9 @@ const Homepage = () => {
       <div
         ref={heroRef}
         className={`fixed inset-0 z-20 flex flex-col md:flex-row transition-all duration-1000 md:gap-[2px]
-          ${scrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
+          ${
+            scrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
+          }`}
         style={{
           transition: "all 1.5s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
