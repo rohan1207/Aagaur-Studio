@@ -83,6 +83,7 @@ const Homepage = () => {
   const [currentEvent, setCurrentEvent] = useState(0);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [textVisible, setTextVisible] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
   const overlayRef = useRef(null);
   const heroRef = useRef(null);
 
@@ -112,7 +113,7 @@ const Homepage = () => {
       }
     };
 
-    // Add smooth scroll behavior
+    // Add smooth scroll behavior for mouse wheel
     const handleWheel = (e) => {
       if (!scrolled && e.deltaY > 0) {
         e.preventDefault();
@@ -135,14 +136,54 @@ const Homepage = () => {
       }
     };
 
+    // Handle touch start
+    const handleTouchStart = (e) => {
+      setTouchStart(e.touches[0].clientY);
+    };
+
+    // Handle touch move
+    const handleTouchMove = (e) => {
+      if (!touchStart) return;
+
+      const touchEnd = e.touches[0].clientY;
+      const deltaY = touchStart - touchEnd;
+
+      // Threshold for touch scroll (adjust if needed)
+      if (Math.abs(deltaY) < 50) return;
+
+      if (!scrolled && deltaY > 0) {
+        // Scrolling down
+        e.preventDefault();
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: "smooth",
+        });
+        setScrolled(true);
+      } else if (scrolled && deltaY < 0 && window.scrollY < window.innerHeight * 0.5) {
+        // Scrolling up
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+        setScrolled(false);
+      }
+
+      setTouchStart(null);
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [scrolled]);
+  }, [scrolled, touchStart]);
 
   // Auto slide functionality
   useEffect(() => {
